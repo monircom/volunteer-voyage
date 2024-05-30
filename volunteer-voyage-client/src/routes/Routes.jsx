@@ -11,6 +11,10 @@ import VolunteerPosts from "../pages/VolunteerPosts";
 import AddPost from "../pages/AddPost";
 import MyList from "../pages/MyList";
 import UpdatePost from "../pages/UpdatePost";
+import Membership from "../pages/Membership";
+import Payment from './../pages/Payment/Payment';
+
+
 
 const router = createBrowserRouter([
     {
@@ -45,6 +49,15 @@ const router = createBrowserRouter([
             {
               path: "/my-list",
               element: <PrivateRoute><MyList></MyList></PrivateRoute>,
+            },
+            {
+              path: "/membership",
+              element: <PrivateRoute><Membership></Membership></PrivateRoute>,
+
+            },
+            {
+              path: "/payment",
+              element: <PrivateRoute><Payment></Payment></PrivateRoute>,
             },
             {
               path: '/update-post/:id',

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 require('dotenv').config()
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const port = process.env.PORT || 9000
 const app = express()
 
@@ -232,6 +233,24 @@ const client = new MongoClient(uri, {
 
       res.send(result)
     })
+
+
+        // payment intent
+        app.post('/create-payment-intent', async (req, res) => {
+          const { price } = req.body;
+          const amount = parseInt(price * 100);
+          console.log(amount, 'amount inside the intent')
+    
+          const paymentIntent = await stripe.paymentIntents.create({
+            amount: amount,
+            currency: 'usd',
+            payment_method_types: ['card']
+          });
+          console.log(paymentIntent)
+          res.send({
+            clientSecret: paymentIntent.client_secret
+          })
+        });
     
 
 

@@ -100,6 +100,9 @@ const Navbar = () => {
                   <li data-tooltip-id="my-tooltip" data-tooltip-content="Add Volunteer Post">
                   <NavLink to="/my-list">Manage My Post</NavLink>
                   </li>
+                  <li data-tooltip-id="my-tooltip" data-tooltip-content="Membership">
+                  <NavLink to="/membership">Membership</NavLink>
+                  </li>
               </ul>
              </details>
            </li>
